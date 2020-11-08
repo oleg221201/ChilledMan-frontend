@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {useHttp} from "../hooks/http.hook";
 import {useMessage} from "../hooks/message.hook";
+import {AuthContext} from "../context/AuthContext";
 
 export const LoginPage = () => {
     const {loading , request, error, clearErrors} = useHttp()
@@ -8,6 +9,7 @@ export const LoginPage = () => {
         email: "", password: ""
     })
     const message = useMessage()
+    const auth = useContext(AuthContext)
 
     useEffect(() => {
         message(error)
@@ -21,10 +23,8 @@ export const LoginPage = () => {
     const login = async () => {
         try {
             const login_data = await request("/api/auth/login", "POST", {...data})
-            console.log("Login:", login_data)
-        } catch (err) {
-
-        }
+            auth.login(login_data.token, login_data.userId)
+        } catch (err) {}
     }
 
     return (

@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {useHttp} from "../hooks/http.hook";
 import {useMessage} from "../hooks/message.hook";
+import {AuthContext} from "../context/AuthContext";
 
 export const RegistrationPage = () => {
     const {loading, request, error, clearErrors} = useHttp()
@@ -8,6 +9,7 @@ export const RegistrationPage = () => {
         email: "", password: "", username: ""
     })
     const message = useMessage()
+    const auth = useContext(AuthContext)
 
     useEffect(() => {
         message(error)
@@ -21,10 +23,8 @@ export const RegistrationPage = () => {
     const register = async () => {
         try {
             const reg_data = await request("/api/auth/registration", "POST", {...data})
-            console.log("Registration", reg_data)
-        } catch (err) {
-
-        }
+            auth.login(reg_data.token, reg_data.userId)
+        } catch (err) {}
     }
 
     return (
