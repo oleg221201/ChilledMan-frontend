@@ -1,13 +1,18 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {useHttp} from "../hooks/http.hook";
+import {useMessage} from "../hooks/message.hook";
 
 export const RegistrationPage = () => {
-
-    const {loading, request} = useHttp()
-
+    const {loading, request, error, clearErrors} = useHttp()
     const [data, setData] = useState({
         email: "", password: "", username: ""
     })
+    const message = useMessage()
+
+    useEffect(() => {
+        message(error)
+        clearErrors()
+    }, [error, message, clearErrors])
 
     const changeHandler = event => {
         setData({...data, [event.target.name]: event.target.value})
