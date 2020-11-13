@@ -19,9 +19,9 @@ export const NewsPage = () => {
         getNewsData()
     },[getNewsData])
 
-    if (loading || !news) return (<div>loading ...</div>)
+    if (loading) return (<div>loading...</div>)
 
-
+    if (!news) return (<div>Friends that you followed has no posts</div>)
 
     return (
         <div>

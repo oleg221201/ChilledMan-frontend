@@ -1,11 +1,50 @@
-import React from 'react'
+import React, {useCallback, useContext, useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
+import {AuthContext} from "../context/AuthContext";
+import {useHttp} from "../hooks/http.hook";
+import {Comment} from "../components/DetailPost/Comment"
+import {Like} from "../components/DetailPost/Like";
 
 export const DetailPostPage = () => {
+    const {token} = useContext(AuthContext)
+    const {request, loading} = useHttp()
+    const [post, setPost] = useState(null)
+    const [user, setUser] = useState(null)
+    const postId = useParams().id
+
+    const getPost = useCallback(async () => {
+        const data = await request(`/api/post/${postId}`, 'GET', null, {
+            Authorization: `Bearer ${token}`
+        })
+        setPost(data.post)
+    }, [request, postId, token])
+
+    const getUser = useCallback(async () => {
+        const data = await request('/api/profile', 'GET', null, {
+            Authorization: `Bearer ${token}`
+        })
+        setUser(data.user)
+    }, [request, token])
+
+    useEffect(() => {
+        getPost()
+        getUser()
+    }, [getPost, getUser])
+
+    if (loading || !post || !user) return (<div>loading...</div>)
+
     return (
         <div>
-            <h2>
+            <h4>
                 Detail Post Page
-            </h2>
+            </h4>
+            <p>{post.text}</p>
+            <p>by {user.username}</p>
+            <Like data={post.likes} />
+            <p>Comments:</p>
+            {post.comments.map((comment) => {
+                return (<Comment data={comment} />)
+            })}
         </div>
     )
 }
