@@ -16,6 +16,10 @@ export const LoginPage = () => {
         clearErrors()
     }, [error, message, clearErrors])
 
+    useEffect(() => {
+        window.M.updateTextFields()
+    }, [])
+
     const changeHandler = event => {
         setData({...data, [event.target.name]: event.target.value})
     }

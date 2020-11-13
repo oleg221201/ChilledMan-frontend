@@ -5,6 +5,7 @@ import {CreatePostPage} from "./pages/CreatePostPage";
 import {DetailPostPage} from "./pages/DetailPostPage";
 import {RegistrationPage} from "./pages/RegistrationPage";
 import {LoginPage} from "./pages/LoginPage";
+import {NewsPage} from "./pages/NewsPage";
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated){
@@ -13,13 +14,16 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/profile" exact>
                     <ProfilePage />
                 </Route>
+                <Route path="/news" exact>
+                    <NewsPage />
+                </Route>
                 <Route path="/create" exact>
                     <CreatePostPage />
                 </Route>
                 <Route path="/detail/:id">
                     <DetailPostPage />
                 </Route>
-                <Redirect to="/profile" />
+                <Redirect to="/news" />
             </Switch>
         )
     }
