@@ -34,7 +34,7 @@ export const DetailPostPage = () => {
     if (loading || !post || !user) return (<div>loading...</div>)
 
     return (
-        <div>
+        <div className="container">
             <h4>
                 Detail Post Page
             </h4>
