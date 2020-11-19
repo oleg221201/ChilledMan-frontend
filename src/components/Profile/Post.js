@@ -39,6 +39,12 @@ export const Post = ({data}) => {
             </div>
             <div style={{display: "inline-block"}}>
                 <button
+                    style={{backgroundColor: "orange", border: 0, color: "white"}}
+                    disabled={loading}
+                >
+                    <Link style={{color: "black"}} to={`/edit/${data}`}>Edit</Link>
+                </button>
+                <button
                     style={{backgroundColor: "red", border: 0, color: "white"}}
                     disabled={loading}
                     onClick={postDelete}

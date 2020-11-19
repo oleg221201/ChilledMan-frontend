@@ -18,6 +18,7 @@ export const Navbar = () => {
                 <span className="brand-logo">ChilledMan</span>
                 <ul className="right hide-on-med-and-down">
                     <li><NavLink to="/profile">Profile</NavLink></li>
+                    <li><NavLink to="/peoples">All users</NavLink></li>
                     <li><NavLink to="/news">News</NavLink></li>
                     <li><NavLink to="/create">Create</NavLink></li>
                     <li><a href="/signOut" onClick={logoutHandler}>Sign out</a></li>

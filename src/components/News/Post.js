@@ -7,7 +7,7 @@ export const Post = ({data}) => {
     return (
         <div key={data._id}>
             <p>{data.text}</p>
-            <Link to={`/detail/${data._id}`}>Read more</Link>
+            <Link to={`/detail/${data._id}`}>More...</Link>
         </div>
     )
 }

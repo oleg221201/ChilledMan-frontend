@@ -6,6 +6,11 @@ import {DetailPostPage} from "./pages/DetailPostPage";
 import {RegistrationPage} from "./pages/RegistrationPage";
 import {LoginPage} from "./pages/LoginPage";
 import {NewsPage} from "./pages/NewsPage";
+import {EditPage} from "./pages/EditPage";
+import {UserPage} from "./pages/UserPage";
+import {FriendsPage} from "./pages/FriendsPage";
+import {AllUsersPage} from "./pages/AllUsersPage";
+
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated){
@@ -22,6 +27,18 @@ export const useRoutes = isAuthenticated => {
                 </Route>
                 <Route path="/detail/:id">
                     <DetailPostPage />
+                </Route>
+                <Route path="/edit/:id">
+                    <EditPage />
+                </Route>
+                <Route path="/user/:id">
+                    <UserPage />
+                </Route>
+                <Route path="/friends/:id">
+                    <FriendsPage />
+                </Route>
+                <Route path="/peoples">
+                    <AllUsersPage />
                 </Route>
                 <Redirect to="/news" />
             </Switch>

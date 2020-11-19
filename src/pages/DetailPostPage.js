@@ -4,12 +4,12 @@ import {AuthContext} from "../context/AuthContext";
 import {useHttp} from "../hooks/http.hook";
 import {Comment} from "../components/DetailPost/Comment"
 import {Like} from "../components/DetailPost/Like";
+import {Owner} from "../components/DetailPost/Owner";
 
 export const DetailPostPage = () => {
     const {token} = useContext(AuthContext)
     const {request, loading} = useHttp()
     const [post, setPost] = useState(null)
-    const [user, setUser] = useState(null)
     const postId = useParams().id
 
     const getPost = useCallback(async () => {
@@ -19,19 +19,11 @@ export const DetailPostPage = () => {
         setPost(data.post)
     }, [request, postId, token])
 
-    const getUser = useCallback(async () => {
-        const data = await request('/api/profile', 'GET', null, {
-            Authorization: `Bearer ${token}`
-        })
-        setUser(data.user)
-    }, [request, token])
-
     useEffect(() => {
         getPost()
-        getUser()
-    }, [getPost, getUser])
+    }, [getPost])
 
-    if (loading || !post || !user) return (<div>loading...</div>)
+    if (loading || !post) return (<div>loading...</div>)
 
     return (
         <div className="container">
@@ -39,7 +31,7 @@ export const DetailPostPage = () => {
                 Detail Post Page
             </h4>
             <p>{post.text}</p>
-            <p>by {user.username}</p>
+            <Owner data={post.owner} />
             <Like data={post.likes} />
             <p>Comments:</p>
             {post.comments.map((comment) => {

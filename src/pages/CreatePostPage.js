@@ -15,7 +15,6 @@ export const CreatePostPage = () => {
     }
     const create = async () => {
         try {
-            console.log(text)
             const res = await request('/api/post', 'POST', text, {
                 Authorization: `Bearer ${token}`
             })
