@@ -5,6 +5,7 @@ import {useHttp} from "../hooks/http.hook";
 import {Comment} from "../components/DetailPost/Comment"
 import {Like} from "../components/DetailPost/Like";
 import {Owner} from "../components/DetailPost/Owner";
+import {AddComment} from "../components/DetailPost/AddComment";
 
 export const DetailPostPage = () => {
     const {token} = useContext(AuthContext)
@@ -32,7 +33,8 @@ export const DetailPostPage = () => {
             </h4>
             <p>{post.text}</p>
             <Owner data={post.owner} />
-            <Like data={post.likes} />
+            <Like data={post.likes} postId={postId} />
+            <AddComment data={postId} />
             <p>Comments:</p>
             {post.comments.map((comment) => {
                 return (<Comment data={comment} />)
