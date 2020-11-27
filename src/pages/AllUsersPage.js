@@ -22,10 +22,12 @@ export const AllUsersPage = () => {
     if (loading || !users) return (<div>loading...</div>)
 
     return (
-        <div>
-            {users.map((user)=>{
-                return (<User id={user._id}/>)
-            })}
+        <div className='row'>
+            <div className="col s3 offset-s1">
+                {users.map((user)=>{
+                    return (<User id={user._id}/>)
+                })}
+            </div>
         </div>
     )
 }

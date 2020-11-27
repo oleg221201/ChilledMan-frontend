@@ -10,7 +10,7 @@ export const CreatePostPage = () => {
     const {request, loading} = useHttp()
     const message = useMessage()
 
-    const chandeHandler = event => {
+    const changeHandler = event => {
         setText({...text, [event.target.name]: event.target.value})
     }
     const create = async () => {
@@ -26,7 +26,7 @@ export const CreatePostPage = () => {
 
     return (
         <div className='row'>
-            <div className='col s6 offset-s2'>
+            <div className='col s6 offset-s1'>
                 <h4>Create new post</h4>
                 <div className="input-field">
                     <textarea
@@ -35,7 +35,7 @@ export const CreatePostPage = () => {
                         placeholder="What would you want to wrote?"
                         name="text"
                         cols="15"
-                        onChange={chandeHandler}
+                        onChange={changeHandler}
                     />
                 </div>
                 <button

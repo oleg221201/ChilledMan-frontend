@@ -20,17 +20,19 @@ export const NewsPage = () => {
     },[getNewsData])
 
     if (loading) return (<div>loading...</div>)
-    if (!news || news.length === 0) return (<div>Friends that you followed has no posts</div>)
+    if (!news || news.length === 0) return (<div>You and friends that you followed has no posts</div>)
 
     return (
-        <div>
-            <h4>
-                Latest news of your friends:
-            </h4>
-            <div>
-                {news.map((post) => {
-                    return (<Post data={post}/>)
-                })}
+        <div className='row'>
+            <div className="col s6 offset-s1">
+                <h4>
+                    News:
+                </h4>
+                <div>
+                    {news.map((post) => {
+                        return (<Post data={post}/>)
+                    })}
+                </div>
             </div>
         </div>
     )

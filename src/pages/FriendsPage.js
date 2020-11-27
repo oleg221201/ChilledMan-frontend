@@ -26,7 +26,8 @@ export const FriendsPage = () => {
     if(user.friends.length === 0) return (<h4>No friends...</h4>)
 
     return (
-        <div>
+        <div className="container">
+            <h4>Following users:</h4>
             {user.friends.map((friendId) => {
                 return <User id={friendId} />
             })}

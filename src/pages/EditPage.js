@@ -40,7 +40,6 @@ export const EditPage = () => {
         <div className='row'>
             <div className='col s6 offset-s2'>
                 <h4>Edit post</h4>
-                <h5>Old post text: {post.text}</h5>
                 <div className="input-field">
                     <textarea
                         id="textarea"
@@ -48,6 +47,7 @@ export const EditPage = () => {
                         placeholder="Here you can edit this post ..."
                         name="text"
                         cols="15"
+                        defaultValue={post.text}
                         onChange={changeHandlers}
                     />
                 </div>

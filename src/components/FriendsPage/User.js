@@ -50,20 +50,27 @@ export const User = ({id}) => {
 
     if(userId === user.id) {
         return (
-            <div>
-                <h5><Link to={`/profile`}>{user.username}</Link></h5>
+            <div className="row">
+                <div className="col s8">
+                    <h5><Link to={`/profile`}>{user.username}</Link></h5>
+                </div>
             </div>
         )
     }
 
 
     return (
-        <div>
-            <h5 style={{display: "inline-block"}}><Link to={`/user/${user.id}`}>{user.username}</Link></h5>
-            <button
-            style={{display: "inline-block", marginLeft: 25}}
-            onClick={onBtnClick}
-            >{isFollowed}</button>
+        <div className="row">
+            <div className="col s8">
+                <h5><Link to={`/user/${user.id}`}>{user.username}</Link></h5>
+            </div>
+            <div className="col s4">
+                <button
+                    style={{"marginTop": 20, "fontSize": 18}}
+
+                    onClick={onBtnClick}
+                >{isFollowed}</button>
+            </div>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import {useHttp} from "../../hooks/http.hook";
+import style from "./Profile.module.css"
 
 
 export const Post = ({data}) => {
@@ -33,19 +34,19 @@ export const Post = ({data}) => {
 
     return (
         <div>
-            <p>{post.text}</p>
-            <div style={{display: "inline-block", marginRight: 10}}>
+            <h6>{post.text}</h6>
+            <div className={style.btn_more}>
                 <Link to={`/detail/${data}`}>More...</Link>
             </div>
-            <div style={{display: "inline-block"}}>
+            <div className={style.edit_del_block}>
                 <button
-                    style={{backgroundColor: "orange", border: 0, color: "white"}}
+                    className={style.btn_edit}
                     disabled={loading}
                 >
                     <Link style={{color: "black"}} to={`/edit/${data}`}>Edit</Link>
                 </button>
                 <button
-                    style={{backgroundColor: "red", border: 0, color: "white"}}
+                    className={style.btn_del}
                     disabled={loading}
                     onClick={postDelete}
                 >Delete</button>

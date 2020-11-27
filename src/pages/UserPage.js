@@ -3,6 +3,7 @@ import {AuthContext} from "../context/AuthContext";
 import {useHttp} from "../hooks/http.hook";
 import {Post} from "../components/UserPage/Post";
 import {Link, useParams} from 'react-router-dom'
+import style from "../components/Profile/Profile.module.css";
 
 
 export const UserPage = () => {
@@ -51,24 +52,41 @@ export const UserPage = () => {
     }
 
     return(
-        <div className='row'>
-            <div className="col s1 offset-s1">
-                <h3>{userData.username}</h3>
-                <button
-                    disabled={loading}
-                    onClick={onBtnClick}
-                >
-                    {isFollowed}
-                </button>
-                <h5><Link to={`/friends/${id}`}>Friends:</Link> {userData.friends.length}</h5>
-                <h5>User posts:</h5>
+        <div className={`row ${style.block}`}>
+            <div className={`${style.profileInfo} col s2 offset-s1`}>
                 <div>
-                    {userData.posts.map((postId) => {
-                        return (<Post data={postId}/>)
-                    })}
+                    <h4 className={style.username}>{userData.username}</h4>
+                    <button
+                        disabled={loading}
+                        onClick={onBtnClick}
+                    >
+                        {isFollowed}
+                    </button>
+                    <hr/>
+                    <h5><Link to={`/friends/${id}`}>Following:</Link></h5>
+                    <h5>{userData.friends.length}</h5>
+                </div>
+            </div>
+            <div className="col s6">
+                <div className="row">
+                    <div className="col s1">
+
+                    </div>
+                    <div className={`col s10 ${style.posts}`}>
+                        <h5>User posts:</h5>
+                        <div className={style.posts_block}>
+                            <div>
+                                {userData.posts.map((postId) => {
+                                    return (<Post data={postId}/>)
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                    <div  className="col s1">
+
+                    </div>
                 </div>
             </div>
         </div>
-
     )
 }

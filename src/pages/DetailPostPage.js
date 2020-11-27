@@ -28,10 +28,7 @@ export const DetailPostPage = () => {
 
     return (
         <div className="container">
-            <h4>
-                Detail Post Page
-            </h4>
-            <p>{post.text}</p>
+            <h5>{post.text}</h5>
             <Owner data={post.owner} />
             <Like data={post.likes} postId={postId} />
             <AddComment data={postId} />
